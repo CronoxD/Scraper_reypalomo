@@ -1,6 +1,7 @@
 
 from database.db import Base, engine, SessionLocal
 from database import models
+import time
 
 # Scraper
 from scraper import get_categories, scrap_garment_by_category
@@ -10,10 +11,16 @@ if __name__ == "__main__":
     # Create database
     Base.metadata.create_all(bind=engine)
 
-    # get_categories()
+    get_categories()
     try:
         session = SessionLocal()
-        category = session.query(models.Category).first()
-        scrap_garment_by_category(category)
+        categories = session.query(models.Category).all()
+
+        for category in categories:
+            scrap_garment_by_category(category)
+            print('Esperando 11 segundos...')
+            time.sleep(11)
+    except Exception as e:
+        print(e)
     finally:
-        pass
+        session.close()
