@@ -19,7 +19,7 @@ class Garment(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
     price = Column(Float)
-    image_url = Column(String)
+    image_url = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
 
     category = relationship("Category", back_populates="garments")
