@@ -17,9 +17,9 @@ if __name__ == "__main__":
         categories = session.query(models.Category).all()
 
         for category in categories:
+            time.sleep(11)
             scrap_garment_by_category(category)
             print('Esperando 11 segundos...')
-            time.sleep(11)
     except Exception as e:
         print(e)
     finally:

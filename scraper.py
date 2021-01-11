@@ -31,6 +31,7 @@ def is_active_garment(spans):
 
     return True
 
+
 def get_categories():
     """Obtiene todas la categorias"""
     res = requests.get(URL_CATEGORIES)
